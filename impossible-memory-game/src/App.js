@@ -9,18 +9,23 @@ function App() {
   let guess2 = null;
   let gameActive = false;
   let clickCounter = 0;
-  const [gameStatus, SetGameStatus] = useState("Ready To Win");
+  const [gameStatus, SetGameStatus] = useState("Ready To Win!!!");
   const [isclicked, Setisclicked] = useState("flipcard");
 
   function startGame() {
     gameActive = true;
     Gamedata.forEach((d) => {
       d.clicked = false;
+      console.log(d.clicked);
     });
     clickCounter = 0;
+    turn = 1;
+    SetGameStatus("Ready To Win!!!");
+    console.log("game active", gameActive);
   }
 
   function runMatch(guess) {
+    console.log("running match", guess.clicked);
     if (gameActive === true && guess.clicked === false) {
       if (turn === 1) {
         guess1 = guess.number;
@@ -32,8 +37,8 @@ function App() {
         turn = 1;
         if (guess1 !== guess2) {
           gameActive = false;
-          SetGameStatus("You have lost");
-          console.log("You have lost");
+          SetGameStatus("WRONG!!! YOU HAVE LOST:(");
+          console.log("You Have lost");
         }
       }
       clickCounter++;
@@ -44,10 +49,11 @@ function App() {
       }
 
       if (clickCounter === 10) {
-        console.log("You have won");
-        SetGameStatus("You have won");
+        console.log("YOU HAVE WON!!!");
+        SetGameStatus("YOU HAVE WON!!!");
       }
       console.log(clickCounter);
+      console.log(gameActive);
     }
   }
 
@@ -55,11 +61,16 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>Welcome to Impossible Memory Card Game.</p>
+        <p>
+          The cards only flip once so make sure to remember what the cards look
+          like.
+        </p>
       </header>
-      <button className="start" onClick={() => startGame()}>
-        Start Game
-      </button>
-      <div>
+
+      <div className="game-status">
+        <button className="start" onClick={() => startGame()}>
+          Start Game
+        </button>
         <p>Game Status: {gameStatus}</p>
       </div>
       <section className="gameboard">

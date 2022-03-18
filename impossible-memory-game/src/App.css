@@ -11,12 +11,8 @@ body {
 .App-header {
   /*background-color: #282c34;*/
   background: url(https://cms-tc.pbskids.org/lunawebsite/resources/assets/img/bg-links.png)
-    no-repeat center center;
+    no-repeat top center;
   min-height: 10vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -25,7 +21,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin: 5%;
+  margin: 3%;
 }
 
 .cardimg {
@@ -57,9 +53,23 @@ body {
   transition: transform 1s;
 }
 
-.flipcard:active .flip-card-inner {
-  transform: translateX(-100%) rotateY(180deg);
-  animation-fill-mode: forwards;
+.flipcard .flip-card-inner {
+  animation: flipping 5s;
+}
+
+@keyframes flipping {
+  0% {
+    transform: translateX(0%) rotateY(0deg);
+  }
+  25% {
+    transform: translateX(-100%) rotateY(180deg);
+  }
+  75% {
+    transform: translateX(-100%) rotateY(180deg);
+  }
+  100% {
+    transform: translateX(0%) rotateY(0deg);
+  }
 }
 
 /*.flip-card-inner.flipcard {
@@ -90,13 +100,24 @@ body {
 }
 
 .start {
-  margin: 3% 0;
-  padding: 1%;
   border-radius: 30%;
   color: rgb(21, 94, 94);
+  margin-left: 1%;
+  padding: 1%;
 }
 
 .start:hover {
   color: white;
   background-color: rgb(21, 94, 94);
+}
+
+.game-status {
+  color: antiquewhite;
+  margin: 0 30%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.game-status p {
+  font-size: 2em;
 }
